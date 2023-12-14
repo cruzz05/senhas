@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refúgio Azulado - Proteja suas Marés Internas</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Handjet:wght@700&family=Nova+Square&display=swap');
+
+        body {
+            font-family: 'Nova Square', sans-serif;
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #2c3e50;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+            background-color: #2980b9;
+            color: #fff;
+            border: 1px solid #1f4788;
+            width: 80%; /* Ajustado para ocupar 80% da largura */
+        }
+
+        #password-strength-bar {
+            height: 10px;
+            background-color: #ecf0f1;
+            margin-top: 10px;
+            width: 0;
+            max-width: 80%; /* Limitado a 80% da largura */
+            transition: width 0.3s ease-in-out;
+        }
+
+        #password-strength-bar span {
+            display: block;
+            height: 100%;
+        }
+
+        .weak {
+            background-color: #e74c3c;
+        }
+
+        .medium {
+            background-color: #f39c12;
+        }
+
+        .strong {
+            background-color: #2ecc71;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌊 Refúgio Azulado - O Protetor das Senhas Marítimas 🌊</h1>
+    <p>⚓ Intruso, antes de adentrar o Refúgio Azulado, você deve proteger suas marés internas. Crie uma senha forte e segura para navegar pelos mares digitais!</p>
+
+    <form onsubmit="return validatePassword()">
+        <label for="password">Digite sua senha marítima:</label>
+        <input type="password" id="password" oninput="updatePasswordStrength()" required>
+        <div id="password-strength-bar">
+            <span class="weak"></span>
+        </div>
+        <button type="submit">Navegar com Segurança</button>
+    </form>
+
+    <script>
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!regex.test(password)) {
+                alert("⚠️ Sua senha é fraca! Ela deve conter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais!");
+                return false;
+            }
+
+            alert("🌊 Parabéns! Você está seguro no Refúgio Azulado. Suas marés internas estão protegidas!");
+            return true;
+        }
+
+        function updatePasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthBar = document.getElementById('password-strength-bar');
+            const strengthClasses = ['weak', 'medium', 'strong'];
+            let strength = 0;
+
+            if (password.match(/[a-z]+/)) {
+                strength++;
+            }
+            if (password.match(/[A-Z]+/)) {
+                strength++;
+            }
+            if (password.match(/[0-9]+/)) {
+                strength++;
+            }
+            if (password.match(/[@$!%*?&]+/)) {
+                strength++;
+            }
+
+            strengthBar.style.width = (strength * 33.33) + '%';
+            strengthBar.className = strengthClasses[strength - 1];
+3
+            if (strength === 4) {
+                strengthBar.style.backgroundColor = '#2ecc71';
+            } else {
+                strengthBar.style.backgroundColor = '#ecf0f1';
+            }
+        }
+    </script>
+</body>
+</html>
